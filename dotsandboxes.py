@@ -19,6 +19,8 @@ class State(object):
         self.box_owners = {}
         self.h_line_owners = {}
         self.v_line_owners = {}
+        #recently added!
+        self.player_just_moved = game.players[-1]
 
     def copy(self):
         res = State(self.game)
@@ -26,7 +28,13 @@ class State(object):
         res.box_owners = self.box_owners.copy()
         res.h_line_owners = self.h_line_owners.copy()
         res.v_line_owners = self.v_line_owners.copy()
+        #Newly added!
+        res.player_just_moved = self.player_just_moved
+
         return res
+
+    def get_player_just_moved(self):
+        return self.player_just_moved
 
     def get_whose_turn(self):
         return self.whose_turn
@@ -44,6 +52,8 @@ class State(object):
             self.h_line_owners[cell] = self.whose_turn
         elif orientation == 'v':
             self.v_line_owners[cell] = self.whose_turn
+
+        self.player_just_moved = self.whose_turn
 
         new_boxes = 0
         for box in self.game.boxes:
