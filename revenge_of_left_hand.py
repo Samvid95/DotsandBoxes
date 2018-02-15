@@ -20,7 +20,7 @@ class Node:
 
 
     def UCTselectChild(self):
-        s = sorted(self.childNodes, key=lambda c: c.wins / c.visits + sqrt(2 * log(self.visits) / c.visits))[-1]
+        s = sorted(self.childNodes, key=lambda c: c.wins / c.visits + sqrt(2 * log(self.visits,2) / c.visits))[-1]
         return s
 
 
